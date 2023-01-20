@@ -3,8 +3,8 @@ import jwtDecode from "jwt-decode"
 export const cognito = {
     userPoolId: 'us-west-2_h8atoRNOJ',
     userPoolName: 'hathor',
-    hostedUIDomain: 'https://hathor.auth.us-west-2.amazoncognito.com',
-    clientId: '5hr130s8ojkffr0913ngauubdj',
+    hostedUIDomain: import.meta.env.VITE_COGNITO_DOMAIN,
+    clientId: import.meta.env.VITE_COGNITO_CLIENT_ID,
     redirectUrl: import.meta.env.VITE_BASE_URL,
     region: 'us-west-2',
     scopes: 'openid email admin'
