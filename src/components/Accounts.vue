@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { getAccessToken } from '../utils/tokens'
+import { getAccessToken, getDecodedAccessToken, getDecodedIdToken } from '../utils/tokens'
+import { v4 as uuidv4 } from 'uuid'
 
 
 let accounts = ref(null)
@@ -56,7 +57,36 @@ async function getAccountDetails(accountId) {
 }
 
 async function createNewAccount(){
-    
+    console.log("Create New Account Requested")
+    let access_token = getAccessToken()
+    let decoded_access_token = getDecodedAccessToken()
+    // if(decoded_access_token["cognito:groups"].includes("admin")){
+        if(1){
+    // console.log(decoded_access_token)
+    const reqOpt = {
+        method: "POST",
+        headers:
+        {
+            "Content-Type": "application/json",
+            "Authorization": "bearer " + access_token
+        },
+        body: JSON.stringify({
+            accountId: uuidv4(),
+            owner: decoded_access_token["username"],
+            accountType: "Extra",
+            balance: 0
+        })
+
+    }
+    const res = await fetch(import.meta.env.VITE_API_BASE_URL + '/accounts/', reqOpt)
+    // let accounts = await res.json()
+    if (res.status == 201) {
+        console.log("New Account Created")
+        alert("New Account created refresh the page to see it in the list")
+    }
+}else{
+    alert("You need admin permission to create new accounts !")
+}
 }
 
 </script>
