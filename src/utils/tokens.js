@@ -4,6 +4,10 @@ import { getTokenFromServer } from "../cognito/config"
 
 const TOKEN_NAME = "hathor-token"
 
+export function deleteToken() {
+    sessionStorage.removeItem(TOKEN_NAME)
+}
+
 export function getToken() {
     const currentToken = sessionStorage.getItem(TOKEN_NAME)    
     if (!currentToken) {

@@ -1,15 +1,22 @@
 <script setup>
+import { checkAndGetToken, deleteToken } from '../utils/tokens'
 defineProps({
   msg: {
     type: String,
     required: true
   }
 })
+
+function logout(){
+  deleteToken()
+  location.pathname ='/'
+}
 </script>
 
 <template>
   <div class="greetings">
     <h2 class="orange">{{ msg }}</h2>
+    <button v-if="checkAndGetToken() != 0" @click=logout()>Logout</button>
     <h3>
       <!-- <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. -->
@@ -37,6 +44,18 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+button {
+background-color: #f76c16;
+border-radius: 4px;
+  padding: 10px;
+  font-size: medium;
+color: white;
+  border: none;
+}
+button:hover{
+    cursor: pointer;
 }
 
 @media (min-width: 1024px) {

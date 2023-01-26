@@ -1,6 +1,4 @@
 <script setup>
-import HelloWorld from '../components/HelloWorld.vue'
-import Accounts from '../components/Accounts.vue'
 import Transfers from '../components/Transfers.vue'
 import CustomerGreeting from '../components/CustomerGreeting.vue';
 import { getDecodedIdToken } from '../utils/tokens';

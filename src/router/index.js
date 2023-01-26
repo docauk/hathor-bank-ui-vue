@@ -79,7 +79,7 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   console.log(to)
   let currentToken = sessionStorage.getItem('hathor-token')
-  if (to.name == "home") {
+  if (to.name == "home" || to.name == "about") {
     if (!currentToken && !to.query.code) {
       console.log("Landing ..")
       return
