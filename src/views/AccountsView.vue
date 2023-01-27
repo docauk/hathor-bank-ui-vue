@@ -10,7 +10,7 @@ const id_token = getDecodedIdToken()
 let user = id_token["cognito:username"].toUpperCase()
 
 console.log(user.toUpperCase())
-const msg = "Welcome " + user + " !"
+const msg = "Hello " + user + " !"
 // })
 
 </script>

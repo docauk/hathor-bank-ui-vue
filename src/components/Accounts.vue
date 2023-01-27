@@ -113,7 +113,7 @@ async function createNewAccount(){
             </tr>
         </table>
         <br />
-        <button @click="createNewAccount()">Create New Account</button>
+        <button v-if="getDecodedAccessToken()['cognito:groups'].includes('admin')" @click="createNewAccount()">Create New Account</button>
     </div>
     
     <div v-if="accountSelected" class="section">
